@@ -65,4 +65,26 @@ class ProductHandlerTest extends TestCase
 
         $this->assertEquals(143, $totalPrice);
     }
+    public function testNewGetTotalPrice()
+    {
+        $this->assertEquals(143, (new ProductHandler)->getTotalPrice($this->products));
+    }
+    public function testNewGetDessertTypeAndRsort()
+    {
+        $list = (new ProductHandler)->getDessertTypeAndRsort($this->products);
+        $this->assertEquals(2, count($list));
+        $this->assertEquals(5, $list[0]['id']);
+        $this->assertEquals(4, $list[1]['id']);
+    }
+    public function testNewTransStrToTime()
+    {
+        $list = (new ProductHandler)->transStrToTime($this->products);
+        $this->assertEquals(6, count($list));
+        $this->assertEquals(1618884000, $list[0]['create_at']);
+        $this->assertEquals(1618966800, $list[1]['create_at']);
+        $this->assertEquals(1618916400, $list[2]['create_at']);
+        $this->assertEquals(1618706700, $list[3]['create_at']);
+        $this->assertEquals(1618814280, $list[4]['create_at']);
+        $this->assertEquals(1617535380, $list[5]['create_at']);
+    }
 }
